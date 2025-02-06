@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Influencer Discounts Tracker",
+  "version": "1.0",
+  "description": "Track influencer promo codes and suggests them when shopping online.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
+  
