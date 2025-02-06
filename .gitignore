@@ -128,3 +128,45 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+### 🛠️ General Node.js & Bun ###
+node_modules/
+.bun/
+bun.lockb
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.babelrc
+.eslintcache
+*.env.local
+.env
+
+### 🚀 React Build & Cache Files ###
+build/
+dist/
+.cache/
+*.cache
+*.log
+.DS_Store
+.vscode/
+.idea/
+*.iml
+
+### 🏗️ TypeScript ###
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+### 🖼️ Public Folder (Optional Cleanup) ###
+public/logo192.png
+public/logo512.png
+public/robots.txt
+public/favicon.ico
+
+### 🏗️ Editor & OS-Specific Junk ###
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+Thumbs.db
+Desktop.ini
