@@ -1,0 +1,102 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.0.11">
+  <diagram name="Page-1" id="o550KqrV1YTg8Symk-XY">
+    <mxGraphModel dx="1833" dy="997" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-1" value="Influencer discounts tracker" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="10" y="10" width="800" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-3" value="Chrome Extension" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="39" y="50" width="750" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-4" value="Server (AWS)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="39" y="260" width="750" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-2" value="Neo4j" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="690" y="300" width="60" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-5" value="React Client" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="80" y="90" width="670" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="4JPQqMe-biIsC0gaJgwF-6" target="4JPQqMe-biIsC0gaJgwF-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-6" value="FastApi" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="80" y="300" width="550" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="4JPQqMe-biIsC0gaJgwF-10" target="4JPQqMe-biIsC0gaJgwF-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-10" value="Youtube chanel crawler func. Adds all promocodes" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="480" y="440" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-11" value="CroneJob (every day)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="80" y="440" width="360" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="4JPQqMe-biIsC0gaJgwF-11" target="4JPQqMe-biIsC0gaJgwF-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="660" y="530" />
+              <mxPoint x="660" y="425" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="4JPQqMe-biIsC0gaJgwF-16" target="4JPQqMe-biIsC0gaJgwF-20">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-16" value="Create new user" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="120" y="130" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="4JPQqMe-biIsC0gaJgwF-17" target="4JPQqMe-biIsC0gaJgwF-21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="550" y="320" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="638" y="250" />
+              <mxPoint x="540" y="250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-17" value="Add influencer to watchlist" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="570" y="130" width="136.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="4JPQqMe-biIsC0gaJgwF-18" target="4JPQqMe-biIsC0gaJgwF-27">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="250" />
+              <mxPoint x="355" y="250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-18" value="Scan online shopping activities and notify users with relevant promocodes" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="320" y="130" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-20" value="Add new user to db" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="110" y="330" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="4JPQqMe-biIsC0gaJgwF-21" target="4JPQqMe-biIsC0gaJgwF-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-21" value="Find or add new influencer and trigger a crawler&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="460" y="330" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-27" value="Find relevant promocodes for shopping website or find similar ones using BERT" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="272.5" y="330" width="165" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="4JPQqMe-biIsC0gaJgwF-29" target="4JPQqMe-biIsC0gaJgwF-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-29" value="Add new promocodes" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="274" y="470" width="136" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4JPQqMe-biIsC0gaJgwF-31" value="Delete stail promocodes" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="112" y="470" width="136" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
