@@ -15,22 +15,10 @@ export const LoginUser = async (username: string): Promise<User> => {
   return user;
 }
 
-export const GetCurrentUser = () : User | null => {
-  let user : User | null = null;
+export const GetCurrentUser = (setFunc: (u: User | null) => void): void => RunningInBrowser()
+  ? setFunc(JSON.parse(localStorage.getItem('user') || 'null'))
+  : chrome.storage.local.get('user', (result: any) => setFunc(result.user));
 
-  if (RunningInBrowser())
-    user = JSON.parse(localStorage.getItem('user') || 'null');
-  else
-    chrome.storage.local.get('user', (result: any) => {
-    user = result.user;
-  });
-  
-  return user;
-}
-
-export const LogoutUser = (): void => {
-  if (RunningInBrowser())
-    localStorage.removeItem('user');
-  else
-    chrome.storage.local.remove('user');
-}
+export const LogoutUser = (): Promise<void> => RunningInBrowser() 
+  ? new Promise(() => localStorage.removeItem('user'))
+  : chrome.storage.local.remove('user');

@@ -11,7 +11,7 @@ type Props = {
 const UserProvider: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => setUser(GetCurrentUser()), []);
+  useEffect(() => GetCurrentUser(setUser), []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

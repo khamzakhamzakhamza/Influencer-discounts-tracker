@@ -8,7 +8,8 @@ const { Header, Content } = Layout;
 const { Title } = Typography;
 
 const App: React.FC = () => {
-  const userContext = useContext(UserContext);
+  const {user} = useContext(UserContext);
+  console.log(user);
 
   return (
     <ConfigProvider
@@ -27,7 +28,7 @@ const App: React.FC = () => {
           <Title level={4}>Influencer Discounts Tracker</Title>
         </Header>
         <Content style={{padding: '15px'}}>
-          {userContext?.user ? <WatchlistScreen/> : <LoginScreen/>}
+          {user ? <WatchlistScreen/> : <LoginScreen/>}
         </Content>
       </Layout>
     </ConfigProvider>
