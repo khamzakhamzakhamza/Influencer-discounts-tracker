@@ -22,7 +22,6 @@ export const GetCurrentUser = () : User | null => {
     user = JSON.parse(localStorage.getItem('user') || 'null');
   else
     chrome.storage.local.get('user', (result: any) => {
-    console.log(result);
     user = result.user;
   });
   
