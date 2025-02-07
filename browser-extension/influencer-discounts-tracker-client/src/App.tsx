@@ -1,17 +1,15 @@
 import { ConfigProvider, Layout, theme, Typography } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import WatchlistScreen from './screens/WatchlistScreen';
-import IsUserLoggedIn from './utils/IsUserLoggedIn';
 import LoginScreen from './screens/LoginScreen';
+import { UserContext } from './context/UserContext';
 
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
 const App: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const userContext = useContext(UserContext);
 
-  useEffect(() => IsUserLoggedIn(setIsLoggedIn), []);
-  
   return (
     <ConfigProvider
       theme={{
@@ -23,13 +21,13 @@ const App: React.FC = () => {
         token: {colorPrimary: "890ccc"},
         algorithm: [theme.darkAlgorithm, theme.compactAlgorithm]
       }}
-    > 
+    >
       <Layout style={{height: '100%'}}>
-        <Header style={{padding: '0px 10px'}}>
+        <Header style={{padding: '0px 15px'}}>
           <Title level={4}>Influencer Discounts Tracker</Title>
         </Header>
-        <Content style={{padding: '10px'}}>
-          {isLoggedIn ? <WatchlistScreen/> : <LoginScreen/>}
+        <Content style={{padding: '15px'}}>
+          {userContext?.user ? <WatchlistScreen/> : <LoginScreen/>}
         </Content>
       </Layout>
     </ConfigProvider>

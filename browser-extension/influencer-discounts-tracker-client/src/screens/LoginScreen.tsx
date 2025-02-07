@@ -5,8 +5,16 @@ import LoginForm from '../components/LoginForm';
 const { Title } = Typography;
 
 const LoginScreen: React.FC = () => (
-  <Space direction='vertical'>
-    <Title level={4}>Login</Title>
+  <Space 
+    direction='vertical'
+    style={{width: '100%'}}
+  >
+    <Title 
+      level={4}
+      style={{marginTop: '10px'}}
+    >
+      Login
+    </Title>
     <LoginForm/>
   </Space>
 );
