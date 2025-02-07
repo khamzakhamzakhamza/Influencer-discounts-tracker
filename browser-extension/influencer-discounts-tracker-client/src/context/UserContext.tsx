@@ -11,13 +11,7 @@ type Props = {
 const UserProvider: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    const handleStorageChange = () => setUser(GetCurrentUser());
-    handleStorageChange();
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
+  useEffect(() => setUser(GetCurrentUser()), []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

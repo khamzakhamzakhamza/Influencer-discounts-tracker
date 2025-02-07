@@ -12,7 +12,6 @@ const LoginForm: React.FC = () => {
 
   const onFinish: FormProps<LoginFormProps>['onFinish'] = async (values: LoginFormProps) => {
     const user = await LoginUser(values.username);
-    console.log(user);
     userContext?.setUser(user);
   };
 
