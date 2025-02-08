@@ -170,3 +170,42 @@ public/favicon.ico
 *.sublime-project
 Thumbs.db
 Desktop.ini
+
+# Byte-compiled / cached files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Dependency files
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# Logs & Debug files
+*.log
+*.out
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE & Editor settings
+.vscode/
+.idea/
+*.iml
+
+# Jupyter Notebook checkpoints (if using Jupyter)
+.ipynb_checkpoints/
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+*.cover
