@@ -13,7 +13,6 @@ from idt_api.api.config.settings import settings
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
-# Include API routes
 app.include_router(user_routes.router, prefix="/api/v1", tags=["users"])
 
 @app.get("/")
