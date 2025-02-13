@@ -1,20 +1,20 @@
 from fastapi import FastAPI
-
-app = FastAPI()
-
-@app.get("/")
-def read_root():
-    return {"message": "Hello, Test!"}
-
-from fastapi import FastAPI
 from idt_api.api.v1 import user_routes
 from idt_api.api.config.settings import settings
+from idt_api.infrastructure.setup import setup_infrastructure
 # from app.dependencies import get_db  # Dependency injection
 
-app = FastAPI(title=settings.PROJECT_NAME)
+async def lifespan(app: FastAPI):
+    setup_infrastructure(app) 
+
+    yield
+    # (Optional) Cleanup logic can go here
+
+app = FastAPI(title=settings.PROJECT_NAME, lifespan=lifespan)
+app.state.settings = settings
 
 app.include_router(user_routes.router, prefix="/api/v1", tags=["users"])
-
+    
 @app.get("/")
 def health_check():
     return {"status": "OK"}
