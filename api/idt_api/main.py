@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from idt_api.api.v1 import user_routes
 from idt_api.api.config.settings import settings
 from idt_api.infrastructure.setup import setup_infrastructure
-# from app.dependencies import get_db  # Dependency injection
 
 async def lifespan(app: FastAPI):
     setup_infrastructure(app) 

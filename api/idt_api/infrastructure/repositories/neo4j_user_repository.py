@@ -2,7 +2,7 @@ from idt_api.domain.entities.user import User
 from typing import Optional
 from idt_api.domain.repositories.user_repository_interface import UserRepositoryInterface
 
-class InMemoryUserRepository(UserRepositoryInterface):
+class Neo4jUserRepository(UserRepositoryInterface):
     def __init__(self):
         self.users = {}
 

@@ -10,3 +10,4 @@ class UserRepositoryInterface(ABC):
     @abstractmethod
     def get_user(self, username: str) -> Optional[User]:
         pass
+
