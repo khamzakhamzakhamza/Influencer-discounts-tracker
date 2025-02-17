@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from idt_api.api.v1.requests.post_user_request import PostUserRequest
-from idt_api.dependencies import get_user_service
+from idt_api.domain.dependencies import get_user_service
 from idt_api.domain.services.user_service import UserService
 
 router = APIRouter()

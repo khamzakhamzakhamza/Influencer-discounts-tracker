@@ -1,16 +1,13 @@
 from neo4j import GraphDatabase
 
-def setup_constraints(driver):
-    cypher_queries = [
-        "CREATE CONSTRAINT IF NOT EXISTS FOR (u:User) REQUIRE u.username IS UNIQUE",
-        "CREATE CONSTRAINT IF NOT EXISTS FOR (u:User) REQUIRE u.id IS UNIQUE"
-    ]
+from idt_api.infrastructure.db.neo4j_session_factory import Neo4jSessionFactory
 
-    with driver.session() as session:
-        for query in cypher_queries:
+queries = [
+    "CREATE CONSTRAINT IF NOT EXISTS FOR (u:User) REQUIRE u.username IS UNIQUE",
+    "CREATE CONSTRAINT IF NOT EXISTS FOR (u:User) REQUIRE u.id IS UNIQUE"
+]
+
+def setup_db():
+    with Neo4jSessionFactory() as session:
+        for query in queries:
             session.run(query)
-
-def setup_db(db_url: str, db_username: str, db_password: str):
-    driver = GraphDatabase.driver(db_url, auth=(db_username, db_password))
-    setup_constraints(driver)
-    driver.close()
