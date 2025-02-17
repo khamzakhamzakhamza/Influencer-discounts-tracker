@@ -4,7 +4,9 @@ from idt_api.api.config.settings import settings
 from idt_api.infrastructure.setup import setup_infrastructure
 
 async def lifespan(app: FastAPI):
-    setup_infrastructure() 
+    if settings.ENVIRONMENT != "testing":
+        setup_infrastructure() 
+    
     yield
 
 app = FastAPI(title=settings.PROJECT_NAME, lifespan=lifespan)

@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     DB_USERNAME: str = "neo4j"
     DB_PASSWORD: str = ""
     DEBUG: bool = True
+    ENVIRONMENT: str = "development"
 
     class Config:
         env_file = ".env"
