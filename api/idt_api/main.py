@@ -4,21 +4,21 @@ from idt_api.api.v1 import user_routes
 from idt_api.api.config.settings import settings
 from idt_api.infrastructure.setup import setup_infrastructure
 
-async def lifespan(app: FastAPI):
+async def lifespan(_: FastAPI):
     if settings.ENVIRONMENT != "testing":
         setup_infrastructure() 
     
     yield
 
 app = FastAPI(title=settings.PROJECT_NAME, lifespan=lifespan)
-app.state.settings = settings
 
 origins = [
-    "http://localhost:3000",
-    "chrome-extension://lkompfalbaajhhgdeaegmnbgelpajlhh",
+    f"chrome-extension://{settings.EXTENSION_ID}",
 ]
 
-# TODO: Remove this in production
+if settings.ENVIRONMENT == "developement":
+    origins += ["http://localhost:8000"]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,

@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     DB_PASSWORD: str = ""
     DEBUG: bool = True
     ENVIRONMENT: str = "development"
+    EXTENSION_ID: str = "lkompfalbaajhhgdeaegmnbgelpajlhh"
 
     class Config:
         env_file = ".env"
