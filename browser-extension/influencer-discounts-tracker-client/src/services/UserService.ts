@@ -1,12 +1,19 @@
+import { API_HOST } from "../AppConfig";
 import { User } from "../entities/User";
 import RunningInBrowser from "../utils/RunningInBrowser";
 
 export const LoginUser = async (username: string): Promise<User> => {
-  var id = crypto.randomUUID()
-  var user : User = {id, username};
-  
-  // TODO: make an api call to register user 
-  
+  const response = await fetch(`${API_HOST}/api/v1/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ username })
+  });
+
+  const responseData = await response.json();
+  const user = responseData;
+
   if (RunningInBrowser())
     localStorage.setItem('user', JSON.stringify(user));
   else 

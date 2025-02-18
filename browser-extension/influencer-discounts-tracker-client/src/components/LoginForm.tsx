@@ -1,5 +1,5 @@
 import { Button, Form, FormProps, Input } from 'antd';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { LoginUser } from '../services/UserService';
 import { UserContext } from '../context/UserContext';
 
@@ -9,9 +9,12 @@ type LoginFormProps = {
 
 const LoginForm: React.FC = () => {
   const userContext = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
 
   const onFinish: FormProps<LoginFormProps>['onFinish'] = async (values: LoginFormProps) => {
+    setLoading(true);
     const user = await LoginUser(values.username);
+    setLoading(false);
     userContext?.setUser(user);
   };
 
@@ -29,7 +32,7 @@ const LoginForm: React.FC = () => {
         <Input />
       </Form.Item>
       <Form.Item>
-        <Button block type="primary" htmlType="submit">
+        <Button block type="primary" htmlType="submit" loading={loading}>
           Login
         </Button>
       </Form.Item>
