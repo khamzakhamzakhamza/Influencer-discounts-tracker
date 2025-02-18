@@ -10,5 +10,4 @@ class MockUserRepository(UserRepositoryInterface):
         self.users[user.username] = user
 
     def get_user(self, username: str) -> Optional[User]:
-        print('sosi')
         return self.users.get(username)

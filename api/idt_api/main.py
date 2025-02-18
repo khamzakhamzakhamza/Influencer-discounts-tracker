@@ -16,8 +16,8 @@ origins = [
     f"chrome-extension://{settings.EXTENSION_ID}",
 ]
 
-if settings.ENVIRONMENT == "developement":
-    origins += ["http://localhost:8000"]
+if settings.ENVIRONMENT == "development":
+    origins += ["http://localhost:3000"]
 
 app.add_middleware(
     CORSMiddleware,
