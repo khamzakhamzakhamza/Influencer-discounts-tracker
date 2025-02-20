@@ -24,9 +24,9 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r api/requirements.txt
 
-      - name: Run Tests
+      - name: Run tests
         run: |
           source venv/bin/activate
-          pytest --maxfail=1 --disable-warnings -v
+          pytest api/tests
