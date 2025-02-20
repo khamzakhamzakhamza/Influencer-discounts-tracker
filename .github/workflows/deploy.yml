@@ -42,8 +42,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         
-      - name: Log in to AWS ECR
-        uses: aws-actions/amazon-ecr-login@v1
+      #- name: Log in to AWS ECR
+      #  uses: aws-actions/amazon-ecr-login@v1
         
       - name: Set environment variables
         run: |
