@@ -1,4 +1,3 @@
-from fastapi import FastAPI
 from idt_api.infrastructure.db.setup import setup_db
 
 def setup_infrastructure():

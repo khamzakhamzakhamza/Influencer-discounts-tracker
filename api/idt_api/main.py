@@ -32,7 +32,3 @@ app.include_router(user_routes.router, prefix="/api/v1", tags=["users"])
 @app.get("/")
 def health_check():
     return {"status": "OK"}
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("idt_api.main:app", host="127.0.0.1", port=8000, reload=True)

@@ -8,5 +8,5 @@ class Neo4jSessionFactory:
     def __enter__(self) -> Session:
         return self._driver.session()
     
-    def __exit__(self, exc_type, exc_value, traceback):
+    def __exit__(self, *_):
         self._driver.close()
