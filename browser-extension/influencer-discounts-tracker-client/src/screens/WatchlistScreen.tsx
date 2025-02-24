@@ -1,6 +1,7 @@
 import { Space, Typography } from 'antd';
 import React from 'react';
 import UserInfoRow from '../components/UserInfoRow';
+import Watchlist from '../components/Watchlist';
 
 const { Title } = Typography;
 
@@ -16,6 +17,7 @@ const WatchlistScreen: React.FC = () => (
       Your watchlist
     </Title>
     <UserInfoRow />
+    <Watchlist />
   </Space>
 );
 

@@ -19,6 +19,7 @@ const UserInfoRow: React.FC = () => {
     <Flex 
       align='center'
       justify='space-between'
+      gap={10}
     >
       <Text>Welcome <b>{user.username}</b>!</Text>
       <Button type='text' onClick={lougoutClick}>Logout</Button>
