@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { GetInfluencers } from "../services/InfluencerService";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { DeleteInfluencer, GetInfluencers } from "../services/InfluencerService";
 import { Influencer } from "../entities/Influencer";
 import { User } from "../entities/User";
 import { UserContext } from "../context/UserContext";
@@ -14,20 +14,21 @@ const Watchlist: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<Influencer[]>([]);
 
-  const loadMoreData = async () => {
-    if (loading) {
-      return;
-    }
+  const loadMoreData = useCallback(async () => {
+    if (loading) return;
 
     setLoading(true);
-
     const influencers = await GetInfluencers(user.username);
-
     setData(influencers);
     setLoading(false);
-  };
+  }, [loading, user.username]);
 
-  useEffect(() => {loadMoreData()}, []);
+  useEffect(() => {loadMoreData()}, [loadMoreData]);
+
+  const deleteInfluencer = async (influencer: Influencer) => {
+    await DeleteInfluencer(user.username, influencer);
+    await loadMoreData();
+  };
   
   return (
     <div
@@ -44,7 +45,7 @@ const Watchlist: React.FC = () => {
         loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
         scrollableTarget="scrollableDiv"
       >
-        <List>{data.map((influencer) => <InfluencerInfoRow influencer={influencer} refetchData={loadMoreData}/>)}</List>
+        <List>{data.map((influencer) => <InfluencerInfoRow influencer={influencer} deleteInfluencer={deleteInfluencer}/>)}</List>
       </InfiniteScroll>
     </div>
   );
