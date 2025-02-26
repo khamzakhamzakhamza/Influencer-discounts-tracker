@@ -6,6 +6,7 @@ import { UserContext } from "../context/UserContext";
 import { List, Skeleton } from "antd";
 import InfluencerInfoRow from "./InfluencerInfoRow";
 import InfiniteScroll from "react-infinite-scroll-component";
+import AddInfluencerModal from "./AddInfluencerModal.";
 
 const Watchlist: React.FC = () => {
   const userContext = useContext(UserContext);
@@ -31,23 +32,27 @@ const Watchlist: React.FC = () => {
   };
   
   return (
-    <div
-      id="scrollableDiv"
-      style={{
-        height: 390,
-        overflow: 'auto',
-      }}
-    >
-      <InfiniteScroll
-        dataLength={data.length}
-        next={loadMoreData}
-        hasMore={data.length < 1}
-        loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-        scrollableTarget="scrollableDiv"
+    <>
+      <AddInfluencerModal influencerAdded={async (_) => await loadMoreData()}/>
+      <div
+        id="scrollableDiv"
+        style={{
+          marginTop: 10,
+          height: 360,
+          overflow: 'auto',
+        }}
       >
-        <List>{data.map((influencer) => <InfluencerInfoRow influencer={influencer} deleteInfluencer={deleteInfluencer}/>)}</List>
-      </InfiniteScroll>
-    </div>
+        <InfiniteScroll
+          dataLength={data.length}
+          next={loadMoreData}
+          hasMore={data.length < 1}
+          loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
+          scrollableTarget="scrollableDiv"
+        >
+          <List>{data.map((influencer) => <InfluencerInfoRow influencer={influencer} deleteInfluencer={deleteInfluencer}/>)}</List>
+        </InfiniteScroll>
+      </div>
+    </>
   );
 };
 

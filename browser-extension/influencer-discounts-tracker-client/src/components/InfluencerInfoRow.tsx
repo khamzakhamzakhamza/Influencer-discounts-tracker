@@ -4,7 +4,7 @@ import { DeleteOutlined } from '@ant-design/icons';
 
 type InfluencerInfoRowProps = {
   influencer: Influencer;
-  deleteInfluencer: (influencer: Influencer) => void;
+  deleteInfluencer: (influencer: Influencer) => Promise<void>;
 }
 
 const InfluencerInfoRow: React.FC<InfluencerInfoRowProps> = (props: InfluencerInfoRowProps) => {
