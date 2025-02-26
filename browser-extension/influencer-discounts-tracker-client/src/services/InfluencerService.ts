@@ -1,4 +1,4 @@
-import { API_HOST } from "../AppConfig";
+//import { API_HOST } from "../AppConfig";
 import { Influencer } from "../entities/Influencer";
 
 export const GetInfluencers = async (username: string): Promise<Influencer[]> => {
