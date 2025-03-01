@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from idt_api.api.v1 import user_routes
+from idt_api.api.v1 import influencer_routes, user_routes
 from idt_api.api.config.settings import settings
 from idt_api.infrastructure.setup import setup_infrastructure
 
 async def lifespan(_: FastAPI):
     if settings.ENVIRONMENT != "testing":
-        setup_infrastructure() 
+        await setup_infrastructure() 
     
     yield
 
@@ -28,6 +28,7 @@ app.add_middleware(
 )
 
 app.include_router(user_routes.router, prefix="/api/v1", tags=["users"])
+app.include_router(influencer_routes.router, prefix="/api/v1", tags=["infuencers"])
     
 @app.get("/")
 def health_check():

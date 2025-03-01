@@ -5,14 +5,14 @@ class UserService:
     def __init__(self, user_repository: UserRepositoryInterface):
         self.user_repository = user_repository
     
-    def retrive_or_create_user(self, username: str) -> User:
-        user = self.user_repository.get_user(username)
+    async def retrive_or_create_user(self, username: str) -> User:
+        user = await self.user_repository.get_user(username)
 
         if user:
             return user
 
         user = User(username)
         
-        self.user_repository.create_user(user)
+        await self.user_repository.create_user(user)
         
         return user

@@ -6,8 +6,8 @@ class MockUserRepository(UserRepositoryInterface):
     def __init__(self):
         self.users = {}
 
-    def create_user(self, user: User) -> None:
+    async def create_user(self, user: User) -> None:
         self.users[user.username] = user
 
-    def get_user(self, username: str) -> Optional[User]:
+    async def get_user(self, username: str) -> Optional[User]:
         return self.users.get(username)

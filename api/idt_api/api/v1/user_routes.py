@@ -6,5 +6,5 @@ from idt_api.domain.services.user_service import UserService
 router = APIRouter()
 
 @router.post("/users")
-def post_user(request: PostUserRequest, service: UserService = Depends(get_user_service)):
-    return service.retrive_or_create_user(request.username)
+async def post_user(request: PostUserRequest, userService: UserService = Depends(get_user_service)):
+    return await userService.retrive_or_create_user(request.username)
