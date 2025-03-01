@@ -6,7 +6,7 @@ from idt_api.domain.services.user_service import UserService
 
 router = APIRouter()
 
-@router.post("/influencer")
+@router.post("/influencers")
 async def post_influencer(request: PostInfluencerRequest, influencerService: InfluencerService = Depends(get_influencer_service), userService: UserService = Depends(get_user_service)):
     user = await userService.retrive_or_create_user(request.username)
     return await influencerService.create_and_associate_influencer(user, request.link)
