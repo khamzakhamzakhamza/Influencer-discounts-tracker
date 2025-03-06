@@ -11,7 +11,7 @@ def influencer_service():
     mock_repo = MagicMock(spec=InfluencerRepositoryInterface)
     mock_scanner = MagicMock(spec=InfluencerScannerInterface)
 
-    mock_scanner.scan_username = AsyncMock()
+    mock_scanner.scan_channel_id = AsyncMock()
     mock_scanner.scan_influencer = AsyncMock()
     mock_repo.get_influencer = AsyncMock()
     mock_repo.create_influencer = AsyncMock()
@@ -24,10 +24,10 @@ def influencer_service():
 async def test_create_and_associate_influencer_should_return_existing_influencer(influencer_service):
     # Arrange
     expected_user = User("John Doe")
-    expected_influencer = Influencer("test", "Test", "https://www.test.com", "https://www.test.com/image.jpg")
+    expected_influencer = Influencer("channelId", "test", "Test", "https://www.test.com", "https://www.test.com/image.jpg")
     
     service, mock_repo, mock_scanner = influencer_service
-    mock_scanner.scan_username.return_value = expected_influencer.username
+    mock_scanner.scan_channel_id.return_value = expected_influencer.username
     mock_repo.get_influencer.return_value = expected_influencer
 
     # Act
@@ -44,10 +44,10 @@ async def test_create_and_associate_influencer_should_return_existing_influencer
 async def test_create_and_associate_influencer_should_create_influencer(influencer_service):
     # Arrange
     expected_user = User("John Doe")
-    expected_influencer = Influencer("test", "Test", "https://www.test.com", "https://www.test.com/image.jpg")
+    expected_influencer = Influencer("channelId", "test", "Test", "https://www.test.com", "https://www.test.com/image.jpg")
     
     service, mock_repo, mock_scanner = influencer_service
-    mock_scanner.scan_username.return_value = expected_influencer.username
+    mock_scanner.scan_channel_id.return_value = expected_influencer.username
     mock_repo.get_influencer.return_value = None
     mock_scanner.scan_influencer.return_value = expected_influencer
 

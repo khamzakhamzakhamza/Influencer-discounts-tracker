@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     DEBUG: bool = True
     ENVIRONMENT: str = "development"
     EXTENSION_ID: str = "lkompfalbaajhhgdeaegmnbgelpajlhh"
+    YOUTUBE_API_KEY: str = ""
 
     class Config:
         env_file = ".env"

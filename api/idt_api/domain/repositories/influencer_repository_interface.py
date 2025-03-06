@@ -5,7 +5,7 @@ from idt_api.domain.entities.user import User
 
 class InfluencerRepositoryInterface(ABC):
     @abstractmethod
-    def get_influencer(self, username: str) -> Optional[Influencer]:
+    def get_influencer(self, channel_id: str) -> Optional[Influencer]:
         pass
     
     @abstractmethod

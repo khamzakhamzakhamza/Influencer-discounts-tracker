@@ -5,8 +5,8 @@ from idt_api.domain.repositories.influencer_repository_interface import Influenc
 from idt_api.infrastructure.db.neo4j_session_factory import Neo4jSessionFactory
 
 class Neo4jInfluencerRepository(InfluencerRepositoryInterface):    
-    async def get_influencer(self, username: str) -> Optional[Influencer]:
-        query = f"MATCH (i:Influencer) WHERE i.username = '{username}' RETURN i"
+    async def get_influencer(self, chennel_id: str) -> Optional[Influencer]:
+        query = f"MATCH (i:Influencer) WHERE i.channelId = '{chennel_id}' RETURN i"
         
         influencer = None
         
@@ -14,12 +14,12 @@ class Neo4jInfluencerRepository(InfluencerRepositoryInterface):
             result = await session.run(query)
         
             async for record in result:
-                influencer = Influencer(record['i']['username'], record['i']['title'], record['i']['channelUrl'], record['i']['imageUrl'], record['i']['id'])
+                influencer = Influencer(record['i']['channelId'], record['i']['username'], record['i']['title'], record['i']['channelUrl'], record['i']['imageUrl'], record['i']['id'])
             
         return influencer
     
     async def create_influencer(self, influencer: Influencer) -> None:
-        query = f"CREATE (i:Influencer {{id: '{influencer.id}', username: '{influencer.username}', title: '{influencer.title}', channelUrl: '{influencer.channelUrl}', imageUrl: '{influencer.imageUrl}'}})"
+        query = f"CREATE (i:Influencer {{id: '{influencer.id}', channelId: '{influencer.channelId}', username: '{influencer.username}', title: '{influencer.title}', channelUrl: '{influencer.channelUrl}', imageUrl: '{influencer.imageUrl}'}})"
 
         async with Neo4jSessionFactory() as session:
             await session.run(query)

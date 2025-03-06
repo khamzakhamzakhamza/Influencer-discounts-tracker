@@ -1,9 +1,13 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from idt_api.api.error_handlers import influencer_not_found_handler
 from idt_api.api.v1 import influencer_routes, user_routes
 from idt_api.api.config.settings import settings
+from idt_api.domain.errors.influencer_not_found import InfluencerNotFound
 from idt_api.infrastructure.setup import setup_infrastructure
 
+@asynccontextmanager
 async def lifespan(_: FastAPI):
     if settings.ENVIRONMENT != "testing":
         await setup_infrastructure() 
@@ -29,6 +33,8 @@ app.add_middleware(
 
 app.include_router(user_routes.router, prefix="/api/v1", tags=["users"])
 app.include_router(influencer_routes.router, prefix="/api/v1", tags=["infuencers"])
+
+app.add_exception_handler(InfluencerNotFound, influencer_not_found_handler)
     
 @app.get("/")
 def health_check():
