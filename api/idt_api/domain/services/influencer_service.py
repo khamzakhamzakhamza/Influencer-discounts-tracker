@@ -1,3 +1,4 @@
+from typing import List
 from idt_api.domain.entities.influencer import Influencer
 from idt_api.domain.entities.user import User
 from idt_api.domain.repositories.influencer_repository_interface import InfluencerRepositoryInterface
@@ -19,3 +20,7 @@ class InfluencerService:
         await self.influencer_repository.associate_user(influencer, user)
 
         return influencer
+
+    async def get_user_influencers(self, user: User) -> List[Influencer]:
+        return await self.influencer_repository.get_user_influencers(user)
+    

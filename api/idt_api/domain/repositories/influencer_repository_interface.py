@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import List, Optional
 from idt_api.domain.entities.influencer import Influencer
 from idt_api.domain.entities.user import User
 
@@ -14,4 +14,8 @@ class InfluencerRepositoryInterface(ABC):
     
     @abstractmethod
     def associate_user(self, influencer: Influencer, user: User) -> None:
+        pass
+
+    @abstractmethod
+    def get_user_influencers(self, user: User) -> List[Influencer]:
         pass

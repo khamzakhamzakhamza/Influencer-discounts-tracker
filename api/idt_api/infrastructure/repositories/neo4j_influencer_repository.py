@@ -1,6 +1,6 @@
 from idt_api.domain.entities.influencer import Influencer
 from idt_api.domain.entities.user import User
-from typing import Optional
+from typing import List, Optional
 from idt_api.domain.repositories.influencer_repository_interface import InfluencerRepositoryInterface
 from idt_api.infrastructure.db.neo4j_session_factory import Neo4jSessionFactory
 
@@ -29,3 +29,17 @@ class Neo4jInfluencerRepository(InfluencerRepositoryInterface):
         
         async with Neo4jSessionFactory() as session:
             await session.run(query)
+
+    async def get_user_influencers(self, user: User) -> List[Influencer]:
+        query = f"MATCH (u:User {{id: '{user.id}'}})-[:FOLLOWS]->(i:Influencer) RETURN i"
+
+        influencers = []
+       
+        async with Neo4jSessionFactory() as session:
+            result = await session.run(query)
+         
+            async for record in result:
+                influencer = Influencer(record['i']['channelId'], record['i']['username'], record['i']['title'], record['i']['channelUrl'], record['i']['imageUrl'], record['i']['id'])
+                influencers.append(influencer)
+
+        return influencers
