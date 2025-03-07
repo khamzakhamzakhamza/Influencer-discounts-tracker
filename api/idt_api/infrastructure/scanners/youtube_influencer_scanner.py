@@ -23,11 +23,16 @@ class YouTubeInfluencerScanner(InfluencerScannerInterface):
             async with session.get(url) as response:
                 data = await response.json()
                 if "items" in data and len(data["items"]) > 0:
-                    return Influencer(
-                        channel_id, 
-                        data["items"][-1]["snippet"]["customUrl"],
-                        data["items"][-1]["snippet"]["title"],
-                        f"https://www.youtube.com/{data["items"][-1]["snippet"]["customUrl"]}",
-                        data["items"][-1]["snippet"]["thumbnails"]["default"]["url"])
+                    return self.build_influencer(channel_id, data["items"][0]["snippet"])
                 
         raise InfluencerNotFound(channel_id) 
+
+    def build_influencer(self, channel_id: str, snippet: any) -> Influencer:
+        customUrl = snippet["customUrl"]
+
+        return Influencer(
+            channel_id, 
+            customUrl,
+            snippet["title"],
+            f"https://www.youtube.com/{customUrl}",
+            snippet["thumbnails"]["default"]["url"])
