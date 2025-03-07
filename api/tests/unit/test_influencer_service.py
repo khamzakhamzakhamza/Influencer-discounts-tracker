@@ -13,7 +13,7 @@ def influencer_service():
 
     mock_scanner.scan_channel_id = AsyncMock()
     mock_scanner.scan_influencer = AsyncMock()
-    mock_repo.get_influencer = AsyncMock()
+    mock_repo.get_influencer_by_channel_id = AsyncMock()
     mock_repo.create_influencer = AsyncMock()
     mock_repo.associate_user = AsyncMock()
 
@@ -28,7 +28,7 @@ async def test_create_and_associate_influencer_should_return_existing_influencer
     
     service, mock_repo, mock_scanner = influencer_service
     mock_scanner.scan_channel_id.return_value = expected_influencer.username
-    mock_repo.get_influencer.return_value = expected_influencer
+    mock_repo.get_influencer_by_channel_id.return_value = expected_influencer
 
     # Act
     influencer = await service.create_and_associate_influencer(expected_user, expected_influencer.channelUrl)
@@ -48,7 +48,7 @@ async def test_create_and_associate_influencer_should_create_influencer(influenc
     
     service, mock_repo, mock_scanner = influencer_service
     mock_scanner.scan_channel_id.return_value = expected_influencer.username
-    mock_repo.get_influencer.return_value = None
+    mock_repo.get_influencer_by_channel_id.return_value = None
     mock_scanner.scan_influencer.return_value = expected_influencer
 
     # Act

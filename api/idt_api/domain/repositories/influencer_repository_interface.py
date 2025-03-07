@@ -5,7 +5,11 @@ from idt_api.domain.entities.user import User
 
 class InfluencerRepositoryInterface(ABC):
     @abstractmethod
-    def get_influencer(self, channel_id: str) -> Optional[Influencer]:
+    def get_influencer_by_channel_id(self, channel_id: str) -> Optional[Influencer]:
+        pass
+
+    @abstractmethod
+    def get_influencer_by_id(self, influencer_id: str) -> Optional[Influencer]:
         pass
     
     @abstractmethod
@@ -18,4 +22,8 @@ class InfluencerRepositoryInterface(ABC):
 
     @abstractmethod
     def get_user_influencers(self, user: User) -> List[Influencer]:
+        pass
+
+    @abstractmethod
+    def disassociate_user_influencer(self, user: User, influencer: Influencer) -> int:
         pass

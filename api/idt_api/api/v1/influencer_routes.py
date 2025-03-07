@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends
+from idt_api.api.v1.requests.delete_influencer_request import DeleteInfluencerRequest
 from idt_api.api.v1.requests.post_influencer_request import PostInfluencerRequest
 from idt_api.domain.dependencies import get_influencer_service, get_user_service
 from idt_api.domain.services.influencer_service import InfluencerService
@@ -15,3 +16,8 @@ async def post_influencer(request: PostInfluencerRequest, influencerService: Inf
 async def get_influencers(username: str, influencerService: InfluencerService = Depends(get_influencer_service), userService: UserService = Depends(get_user_service)):
     user = await userService.retrive_or_create_user(username)
     return await influencerService.get_user_influencers(user)
+
+@router.delete("/influencers")
+async def get_influencers(request: DeleteInfluencerRequest, influencerService: InfluencerService = Depends(get_influencer_service), userService: UserService = Depends(get_user_service)):
+    user = await userService.retrive_or_create_user(request.username)
+    return await influencerService.disassociate_user_influencer(user, request.influencer_id)
