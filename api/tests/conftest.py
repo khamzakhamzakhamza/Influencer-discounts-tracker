@@ -2,7 +2,6 @@ import os
 import pytest
 from fastapi.testclient import TestClient
 from idt_api.infrastructure.dependencies import get_influencer_repository, get_influencer_scanner, get_user_repository
-from idt_api.infrastructure.repositories.neo4j_user_repository import Neo4jUserRepository
 from idt_api.main import app
 from tests.component.mock_repositories.mock_influencer_repository import MockInfluencerRepository
 from tests.component.mock_repositories.mock_user_repository import MockUserRepository
