@@ -42,3 +42,19 @@ def test_get_influencers_should_return_user_influencers(client):
     assert len(response.json()) == 1
     assert response.json()[0]["username"] == "@WeeklyPlanetPodcast"
 
+def test_delete_influencer_should_disassociate_influencer(client):
+    # Arrange
+    username="test"
+    link="https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw"
+    
+    client.post("/api/v1/users", json={"username": username})
+    influencer_reposponse = client.post("/api/v1/influencers", json={"username": username, "link": link})
+
+    influencer_id = influencer_reposponse.json()["id"]
+    
+    # Act
+    response = client.delete(f"/api/v1/influencers?username={username}&influencer_id={influencer_id}")
+
+    # Assert
+    assert response.status_code == 200
+    assert client.get(f"/api/v1/influencers?username={username}").json() == []
