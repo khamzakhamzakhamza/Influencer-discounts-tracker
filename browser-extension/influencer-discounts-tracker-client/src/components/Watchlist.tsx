@@ -16,19 +16,19 @@ const Watchlist: React.FC = () => {
   const [data, setData] = useState<Influencer[]>([]);
 
   const loadMoreData = useCallback(async () => {
-    if (loading) return;
-
     setLoading(true);
     const influencers = await GetInfluencers(user.username);
     setData(influencers);
     setLoading(false);
-  }, [loading, user.username]);
+  }, [user.username]);
 
   useEffect(() => {loadMoreData()}, [loadMoreData]);
 
   const deleteInfluencer = async (influencer: Influencer) => {
     await DeleteInfluencer(user.username, influencer);
-    await loadMoreData();
+
+    if (!loading)
+      await loadMoreData();
   };
   
   return (
