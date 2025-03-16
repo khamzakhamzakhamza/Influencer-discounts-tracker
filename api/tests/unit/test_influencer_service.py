@@ -60,8 +60,8 @@ async def test_create_and_associate_influencer_should_create_influencer(influenc
     # Assert
     assert influencer is not None
     assert influencer == expected_influencer
-    mock_repo.create_influencer.assert_called_once_with(expected_influencer)
-    mock_repo.associate_user.assert_called_once_with(expected_influencer, expected_user)
+    mock_repo.create_influencer.assert_called_once_with(expected_influencer, expected_user)
+    mock_repo.associate_user.assert_not_called()
 
 @pytest.mark.asyncio
 async def test_disassociate_user_influencer_should_disassociate_influencer(influencer_service):

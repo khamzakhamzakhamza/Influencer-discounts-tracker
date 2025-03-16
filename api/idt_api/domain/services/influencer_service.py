@@ -16,10 +16,10 @@ class InfluencerService:
 
         if influencer is None:
             influencer = await self.influencer_scanner.scan_influencer(channel_id)
-            await self.influencer_repository.create_influencer(influencer)
+            await self.influencer_repository.create_influencer(influencer, user)
+        else:
+            await self.influencer_repository.associate_user(influencer, user)
         
-        await self.influencer_repository.associate_user(influencer, user)
-
         return influencer
 
     async def get_user_influencers(self, user: User) -> List[Influencer]:

@@ -37,27 +37,30 @@ class Neo4jInfluencerRepository(InfluencerRepositoryInterface):
             
         return influencer
     
-    async def create_influencer(self, influencer: Influencer) -> None:
+    async def create_influencer(self, influencer: Influencer, user: User) -> None:
         query = """
+            MERGE (u:User {id: $user_id})
             CREATE (i:Influencer {
                 id: $id,
-                channelId: $channelId,
+                channelId: $channel_id,
                 username: $username,
                 title: $title,
-                channelUrl: $channelUrl,
-                imageUrl: $imageUrl
+                channelUrl: $channel_url,
+                imageUrl: $image_url
             })
+            MERGE (u)-[:FOLLOWS]->(i)
         """
 
         async with Neo4jSessionFactory() as session:
             await session.run(
                 query,
+                user_id=user.id,
                 id=influencer.id,
-                channelId=influencer.channelId,
+                channel_id=influencer.channelId,
                 username=influencer.username,
                 title=influencer.title,
-                channelUrl=influencer.channelUrl,
-                imageUrl=influencer.imageUrl
+                channel_url=influencer.channelUrl,
+                image_url=influencer.imageUrl
             )
 
     async def associate_user(self, influencer: Influencer, user: User) -> None:

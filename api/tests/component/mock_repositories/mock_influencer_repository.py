@@ -17,7 +17,7 @@ class MockInfluencerRepository(InfluencerRepositoryInterface):
         
         return None
     
-    async def create_influencer(self, influencer: Influencer) -> None:
+    async def create_influencer(self, influencer: Influencer, user: User) -> None:
         self.influencers[influencer.username] = influencer
     
     async def associate_user(self, influencer: Influencer, user: User) -> None:

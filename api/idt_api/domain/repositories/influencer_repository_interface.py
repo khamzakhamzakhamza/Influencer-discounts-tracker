@@ -13,7 +13,7 @@ class InfluencerRepositoryInterface(ABC):
         pass
     
     @abstractmethod
-    def create_influencer(self, influencer: Influencer) -> None:
+    def create_influencer(self, influencer: Influencer, user: User) -> None:
         pass
     
     @abstractmethod
