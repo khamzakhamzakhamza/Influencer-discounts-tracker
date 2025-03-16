@@ -5,18 +5,26 @@ from idt_api.infrastructure.db.neo4j_session_factory import Neo4jSessionFactory
 
 class Neo4jUserRepository(UserRepositoryInterface):
     async def create_user(self, user: User) -> None:
-        query = f"CREATE (u:User {{username: '{user.username}', id: '{user.id}'}})"
+        query = """
+            CREATE (u:User {
+                id: $id,
+                username: $username
+            })
+        """
 
         async with Neo4jSessionFactory() as session:
-            await session.run(query)
+            await session.run(query, id=user.id, username=user.username)
 
     async def get_user(self, username: str) -> Optional[User]:
-        query = f"MATCH (u:User) WHERE u.username = '{username}' RETURN u"
+        query = """
+            MATCH (u:User {username: $username})
+            RETURN u
+        """
         
         user = None
         
         async with Neo4jSessionFactory() as session:
-            result = await session.run(query)
+            result = await session.run(query, username=username)
         
             async for record in result:
                 user = User(record['u']['username'], record['u']['id'])
