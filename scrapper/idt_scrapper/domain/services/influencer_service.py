@@ -12,5 +12,5 @@ class InfluencerService:
         return self.influencer_repository.get_influencers_by_desc_update_date()
     
     def update_influencer(self, influencer: Influencer):
-        influencer = self.influencer_scanner.scan_influencer(influencer)
+        influencer = self.influencer_scanner.rescan_influencer(influencer)
         self.influencer_repository.update_influencer(influencer)
