@@ -209,3 +209,5 @@ htmlcov/
 .coverage
 coverage.xml
 *.cover
+
+*.zip
