@@ -4,7 +4,7 @@ from scrapper.idt_scrapper.domain.entities.influencer import Influencer
 
 class InfluencerRepositoryInterface(ABC):
     @abstractmethod
-    def get_influencer_by_desc_update_date(self, count: int = 100) -> List[Influencer]:
+    def get_influencers_by_desc_update_date(self, count: int = 100) -> List[Influencer]:
         pass
 
     @abstractmethod
