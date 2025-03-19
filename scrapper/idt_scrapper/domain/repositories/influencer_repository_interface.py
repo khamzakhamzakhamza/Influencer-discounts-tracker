@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List
-from scrapper.idt_scrapper.domain.entities.influencer import Influencer
+from idt_scrapper.domain.entities.influencer import Influencer
 
 class InfluencerRepositoryInterface(ABC):
     @abstractmethod

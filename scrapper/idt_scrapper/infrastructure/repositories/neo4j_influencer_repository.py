@@ -1,7 +1,7 @@
 from typing import List
-from scrapper.idt_scrapper.domain.entities.influencer import Influencer
-from scrapper.idt_scrapper.domain.repositories.influencer_repository_interface import InfluencerRepositoryInterface
-from scrapper.idt_scrapper.infrastructure.db.neo4j_session_factory import Neo4jSessionFactory
+from idt_scrapper.domain.entities.influencer import Influencer
+from idt_scrapper.domain.repositories.influencer_repository_interface import InfluencerRepositoryInterface
+from idt_scrapper.infrastructure.db.neo4j_session_factory import Neo4jSessionFactory
 
 class Neo4jInfluencerRepository(InfluencerRepositoryInterface):    
     def get_influencers_by_desc_update_date(self, count: int = 100) -> List[Influencer]:

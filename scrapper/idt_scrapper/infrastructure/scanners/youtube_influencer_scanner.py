@@ -1,6 +1,6 @@
 import requests
-from scrapper.idt_scrapper.domain.entities.influencer import Influencer
-from scrapper.idt_scrapper.domain.scanners.influencer_scanner_interface import InfluencerScannerInterface
+from idt_scrapper.domain.entities.influencer import Influencer
+from idt_scrapper.domain.scanners.influencer_scanner_interface import InfluencerScannerInterface
 
 class YouTubeInfluencerScanner(InfluencerScannerInterface):
     def rescan_influencer(self, influencer: Influencer):

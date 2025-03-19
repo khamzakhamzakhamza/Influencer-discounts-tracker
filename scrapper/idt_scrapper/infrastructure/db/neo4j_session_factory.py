@@ -1,5 +1,5 @@
 from neo4j import AsyncGraphDatabase, Session
-from idt_api.api.config.settings import settings
+# from idt_api.api.config.settings import settings
 
 class Neo4jSessionFactory:
     def __init__(self):

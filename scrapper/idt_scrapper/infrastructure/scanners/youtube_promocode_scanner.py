@@ -1,7 +1,7 @@
 from typing import List
 import requests
-from scrapper.idt_scrapper.domain.entities.promocode import Promocode
-from scrapper.idt_scrapper.domain.scanners.promocode_scanner_intrerface import PromocodeScannerInterface
+from idt_scrapper.domain.entities.promocode import Promocode
+from idt_scrapper.domain.scanners.promocode_scanner_intrerface import PromocodeScannerInterface
 
 class YouTubePromocodeScanner(PromocodeScannerInterface):
     def scan_promocodes(self, channel_id: str) -> List[Promocode]:
