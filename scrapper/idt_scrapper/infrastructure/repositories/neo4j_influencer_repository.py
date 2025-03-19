@@ -5,7 +5,22 @@ from idt_scrapper.infrastructure.db.neo4j_session_factory import Neo4jSessionFac
 
 class Neo4jInfluencerRepository(InfluencerRepositoryInterface):    
     def get_influencers_by_desc_update_date(self, count: int = 100) -> List[Influencer]:
-        pass
+        query = """
+            MATCH (i:Influencer)
+            RETURN i
+            ORDER BY i.lastUpdateDate DESC
+            LIMIT $count
+        """
+        
+        influencer = None
+        
+        with Neo4jSessionFactory() as session:
+            result = session.run(query, count=count)
+        
+            for record in result:
+                influencer = self.map_influencer(record)
+            
+        return influencer
     
     def update_influencer(self, influencer: Influencer):
         pass

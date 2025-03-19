@@ -8,5 +8,5 @@ from idt_scrapper.domain.services.influencer_service import InfluencerService
 from idt_scrapper.domain.services.promocode_service import PromocodeService
 
 def domain_di_config(binder: Binder):
-    binder.bind(PromocodeService, lambda: PromocodeService(inject.instance(PromocodeRepositoryInterface), inject.instance(PromocodeScannerInterface)))
-    binder.bind(InfluencerService, lambda: InfluencerService(inject.instance(InfluencerRepositoryInterface), inject.instance(InfluencerScannerInterface)))
+    binder.bind_to_provider(PromocodeService, lambda: PromocodeService(inject.instance(PromocodeRepositoryInterface), inject.instance(PromocodeScannerInterface)))
+    binder.bind_to_provider(InfluencerService, lambda: InfluencerService(inject.instance(InfluencerRepositoryInterface), inject.instance(InfluencerScannerInterface)))

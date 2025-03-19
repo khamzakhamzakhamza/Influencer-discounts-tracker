@@ -4,8 +4,8 @@ from idt_scrapper.domain.services.promocode_service import PromocodeService
 
 class UpdateOrchestrator:
     def __init__(self, influencer_service: InfluencerService, promocode_service: PromocodeService):
-        self._influencer_service = influencer_service()
-        self._promocode_service = promocode_service()
+        self._influencer_service = influencer_service
+        self._promocode_service = promocode_service
 
     def update_influencers(self) -> List[str]:
         influencers = self._influencer_service.get_influencers_to_update()
