@@ -12,15 +12,15 @@ class Neo4jInfluencerRepository(InfluencerRepositoryInterface):
             LIMIT $count
         """
         
-        influencer = None
+        influencers = []
         
         with Neo4jSessionFactory() as session:
             result = session.run(query, count=count)
         
             for record in result:
-                influencer = self.map_influencer(record)
+                influencers.append(self.map_influencer(record))
             
-        return influencer
+        return influencers
     
     def update_influencer(self, influencer: Influencer):
         pass

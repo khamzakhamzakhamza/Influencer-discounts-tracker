@@ -1,7 +1,7 @@
 import json
 from idt_scrapper.main import startup
 
-scraper = startup()
+scraper=startup()
 scraper.update_influencers()
 
 def lambda_handler(event, context):

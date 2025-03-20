@@ -1,4 +1,5 @@
 import requests
+from idt_scrapper.config import settings
 from idt_scrapper.domain.entities.influencer import Influencer
 from idt_scrapper.domain.scanners.influencer_scanner_interface import InfluencerScannerInterface
 
