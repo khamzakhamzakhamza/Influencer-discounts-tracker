@@ -23,7 +23,15 @@ class Neo4jInfluencerRepository(InfluencerRepositoryInterface):
         return influencers
     
     def update_influencer(self, influencer: Influencer):
-        pass
+        query = """
+            MERGE (i:Influencer {id: $id})
+            ON MATCH SET 
+                i.title = $title,
+                i.imageUrl = $image_url
+        """
+        
+        with Neo4jSessionFactory() as session:
+            session.run(query, id=influencer.id, title=influencer.title, image_url=influencer.image_url)
     
     def map_influencer(self, record) -> Influencer:
         return Influencer(

@@ -18,7 +18,7 @@ class InfluencerService:
         return [influencer for influencer in influencers if self.get_last_update_date(influencer) != today]
     
     def update_influencer(self, influencer: Influencer):
-        influencer = self._influencer_scanner.rescan_influencer(influencer)
+        self._influencer_scanner.rescan_influencer(influencer)
         self._influencer_repository.update_influencer(influencer)
 
     def get_last_update_date(self, influencer: Influencer) -> date:
