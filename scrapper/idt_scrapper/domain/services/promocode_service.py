@@ -22,6 +22,6 @@ class PromocodeService:
         self._promocode_repository.delete_promocodes(promocodes_to_delete)
 
     def save_promocodes(self, influencer: Influencer) -> List[Promocode]:
-        promocodes = self._promocode_scanner.scan_promocodes(influencer.channel_id)
+        promocodes = self._promocode_scanner.scan_content(influencer)
         self._promocode_repository.create_promocodes(promocodes)
         return promocodes
