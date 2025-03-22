@@ -13,11 +13,11 @@ class ContentService:
     
     def delete_stale(self, influencer: Influencer) -> Optional[datetime]:
         content = self._content_repository.get_content(influencer)
-        cuttoff_date = datetime.now(timezone.utc) - timedelta(days=settings.CONTENT_PERIOD_DAYS)
+        cuttoff_date = (datetime.now(timezone.utc) - timedelta(days=settings.CONTENT_PERIOD_DAYS)).date()
         content_to_delete = [
             _content.id
             for _content in content
-            if _content.content_creation_date <= cuttoff_date
+            if _content.content_creation_date.date() > cuttoff_date
         ]
 
         self._content_repository.delete_content(content_to_delete)
