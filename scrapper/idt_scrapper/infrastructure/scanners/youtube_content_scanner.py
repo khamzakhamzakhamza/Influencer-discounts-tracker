@@ -1,20 +1,20 @@
 import requests
 from typing import List, Optional
 from urllib.parse import urlencode
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from idt_scrapper.config import settings
-from idt_scrapper.domain.scanners.promocode_scanner_intrerface import PromocodeScannerInterface
+from idt_scrapper.domain.scanners.content_scanner_intrerface import ContentScannerInterface
 from idt_scrapper.domain.errors.scanning_error import ScanningError
 from idt_scrapper.domain.entities.influencer import Influencer
 from idt_scrapper.domain.entities.content import Content
 
-class YouTubePromocodeScanner(PromocodeScannerInterface):
+# TODO: test this shit
+class YouTubeContentScanner(ContentScannerInterface):
     max_results = 50
-    cutoff_time_days = 182
 
-    def scan_content(self, influencer: Influencer) -> List[Content]:
+    def scan_content(self, influencer: Influencer, cutoff_date: datetime) -> List[Content]:
         uploads_playlist_id = self.get_playlist_id(influencer)
-        video_ids = self.get_video_ids(uploads_playlist_id)
+        video_ids = self.get_video_ids(uploads_playlist_id, cutoff_date)
         videos = self.get_videos(video_ids)
 
         content = [
@@ -44,8 +44,8 @@ class YouTubePromocodeScanner(PromocodeScannerInterface):
         except Exception as e:
             raise ScanningError(influencer, "get_playlist_id_parse", e)
 
-    def get_video_ids(self, playlist_id: str) -> List[str]:
-        cutoff_time = (datetime.now(timezone.utc) - timedelta(days=self.cutoff_time_days)).isoformat() + "Z"
+    def get_video_ids(self, playlist_id: str, cutoff_date: datetime) -> List[str]:
+        cutoff_date = cutoff_date.isoformat() + "Z"
 
         video_ids = []
         fetch_more = True
@@ -54,7 +54,7 @@ class YouTubePromocodeScanner(PromocodeScannerInterface):
             data = self.fetch_video_ids(playlist_id, page_token)
             
             for item in data["items"]:
-                if item["snippet"]["publishedAt"] < cutoff_time:
+                if item["snippet"]["publishedAt"] < cutoff_date:
                     fetch_more = False
                     break
 
@@ -125,6 +125,7 @@ class YouTubePromocodeScanner(PromocodeScannerInterface):
     def build_content(self, video: any) -> Content:
         return Content(
             id = video["id"],
+            title = video["snippet"]["title"],
             prompt = video["snippet"]["description"],
             content_url = f"https://www.youtube.com/watch?v={video['id']}",
             creation_date=datetime.now(timezone.utc),

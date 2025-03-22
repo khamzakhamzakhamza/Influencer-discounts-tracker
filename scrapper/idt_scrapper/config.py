@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     DB_PASSWORD: str = ""
     ENVIRONMENT: str = "development"
     YOUTUBE_API_KEY: str = ""
+    CONTENT_PERIOD_DAYS: int = 182
 
     class Config:
         env_file = ".env"

@@ -1,11 +1,11 @@
 from typing import List
 from idt_scrapper.domain.services.influencer_service import InfluencerService
-from idt_scrapper.domain.services.promocode_service import PromocodeService
+from idt_scrapper.domain.services.content_service import ContentService
 
 class UpdateOrchestrator:
-    def __init__(self, influencer_service: InfluencerService, promocode_service: PromocodeService):
+    def __init__(self, influencer_service: InfluencerService, content_service: ContentService):
         self._influencer_service = influencer_service
-        self._promocode_service = promocode_service
+        self._content_service = content_service
 
     def update_influencers(self) -> List[str]:
         influencers = self._influencer_service.get_influencers_to_update()
@@ -16,8 +16,9 @@ class UpdateOrchestrator:
         for influencer in influencers:
             try:
                 self._influencer_service.update_influencer(influencer)
-                # self._promocode_service.delete_stale(influencer)
-                self._promocode_service.save_promocodes(influencer)
+                most_recent_content_date = self._content_service.delete_stale(influencer)
+                content = self._content_service.save_content(influencer, most_recent_content_date)
+                # TODO: get promos from content and save them
                 updated_id.append(influencer.id)
             except Exception as e:
                 failed_id.append(influencer.id)

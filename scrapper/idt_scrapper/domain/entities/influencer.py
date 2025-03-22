@@ -13,4 +13,4 @@ class Influencer:
         self.version = 1
 
     def __repr__(self):
-        return f"Influencer(id={self.id}, channel_id={self.channel_id}, username={self.username}, title={self.title}, channel_url={self.channel_url}, image_url={self.image_url}, update_time={self.update_time}, created_time={self.created_time}, version={self.version})"
+        return f"Influencer(id={self.id}, channel_id={self.channel_id}, username={self.username}, title={self.title}, channel_url={self.channel_url}, image_url={self.image_url}, update_time={self.last_update_date}, created_time={self.creation_date}, version={self.version})"
