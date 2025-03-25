@@ -5,11 +5,12 @@ from idt_scrapper.domain.orchestrators.update_orchestrator import UpdateOrchestr
 from idt_scrapper.domain.services.influencer_service import InfluencerService
 from idt_scrapper.domain.services.content_service import ContentService
 from idt_scrapper.infrastructure.di_injections import infrastructure_di_config
+from idt_scrapper.domain.services.promo_service import PromoService
 
 def startup() -> UpdateOrchestrator:
     inject.configure(di)
 
-    return UpdateOrchestrator(inject.instance(InfluencerService), inject.instance(ContentService))
+    return UpdateOrchestrator(inject.instance(InfluencerService), inject.instance(ContentService), inject.instance(PromoService))
 
 def di(binder: Binder):
     infrastructure_di_config(binder)

@@ -29,7 +29,7 @@ class ContentService:
         return None
 
     def save_content(self, influencer: Influencer, cutoff_date: Optional[datetime]) -> List[Content]:
-        cutoff_date = cutoff_date if cutoff_date else datetime.now(timezone.utc) - timedelta(days=settings.CONTENT_PERIOD_DAYS)
+        cutoff_date = cutoff_date.date() if cutoff_date else (datetime.now(timezone.utc) - timedelta(days=settings.CONTENT_PERIOD_DAYS)).date()
         content = self._content_scanner.scan_content(influencer, cutoff_date)
         self._content_repository.create_content(influencer, content)
         return content
