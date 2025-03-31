@@ -79,4 +79,3 @@ def test_delete_stale_when_all_stale_should_return_none(content_service):
     
     # Assert
     assert actual_date is None
-
