@@ -21,7 +21,7 @@ def test_delete_stale_should_filter_stale_content(content_service):
     influencer = InfluencerBuilder().build()
     configured_period = settings.CONTENT_PERIOD_DAYS
 
-    valid_date = datetime.now(timezone.utc) - timedelta(days=configured_period - 1)
+    valid_date = datetime.now(timezone.utc) - timedelta(days=configured_period + 1)
     stale_date = datetime.now(timezone.utc) - timedelta(days=configured_period)
 
     valid_content = ContentBuilder().with_id('valid').with_content_creation_date(valid_date).build() 
