@@ -9,10 +9,8 @@ class InfluencerService:
         self._influencer_repository = influencer_repository
         self._influencer_scanner = influencer_scanner
 
-    # TODO: test this shit 
     def get_influencers_to_update(self) -> List[Influencer]:
         influencers = self._influencer_repository.get_influencers_by_desc_update_date()
-
         today = datetime.now(timezone.utc).date()
         
         return [influencer for influencer in influencers if self.get_last_update_date(influencer) != today]

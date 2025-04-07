@@ -7,15 +7,15 @@ from idt_scrapper.infrastructure.repositories.neo4j_influencer_repository import
 from idt_scrapper.infrastructure.repositories.neo4j_content_repository import Neo4jContentRepository
 from idt_scrapper.infrastructure.scanners.youtube_influencer_scanner import YouTubeInfluencerScanner
 from idt_scrapper.infrastructure.scanners.youtube_content_scanner import YouTubeContentScanner
-from idt_scrapper.domain.scanners.promo_scanner_interface import PromoScannerInterface
-from idt_scrapper.infrastructure.scanners.promo_scanner import PromoScanner
-from idt_scrapper.domain.repositories.promo_repository_interface import PromoRepositoryInterface
-from idt_scrapper.infrastructure.repositories.neo4j_promo_repository import Neo4jPromoRepository
+from scrapper.idt_scrapper.domain.scanners.affiliated_link_scanner_interface import AffiliatedLinkScannerInterface
+from scrapper.idt_scrapper.infrastructure.scanners.beautiful_soup_affiliated_link_scanner import BeautifulSoupAffiliatedLinkScanner
+from scrapper.idt_scrapper.domain.repositories.affiliated_link_repository_interface import AffiliatedLinkRepositoryInterface
+from scrapper.idt_scrapper.infrastructure.repositories.neo4j_affiliated_link_repository_interface import Neo4jAffiliatedLinkRepository
 
 def infrastructure_di_config(binder: Binder):
     binder.bind(ContentScannerInterface, YouTubeContentScanner())
     binder.bind(InfluencerScannerInterface, YouTubeInfluencerScanner())
     binder.bind(ContentRepositoryInterface, Neo4jContentRepository())
     binder.bind(InfluencerRepositoryInterface, Neo4jInfluencerRepository())
-    binder.bind(PromoScannerInterface, PromoScanner())
-    binder.bind(PromoRepositoryInterface, Neo4jPromoRepository())
+    binder.bind(AffiliatedLinkScannerInterface, BeautifulSoupAffiliatedLinkScanner())
+    binder.bind(AffiliatedLinkRepositoryInterface, Neo4jAffiliatedLinkRepository())

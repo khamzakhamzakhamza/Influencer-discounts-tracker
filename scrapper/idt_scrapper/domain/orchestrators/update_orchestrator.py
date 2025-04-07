@@ -11,7 +11,6 @@ class UpdateOrchestrator:
 
     def update_influencers(self) -> List[str]:
         influencers = self._influencer_service.get_influencers_to_update()
-        
         updated_id = []
         failed_id = []
 
