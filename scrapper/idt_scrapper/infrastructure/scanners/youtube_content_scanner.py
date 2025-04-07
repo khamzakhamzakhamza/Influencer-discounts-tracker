@@ -10,7 +10,8 @@ from idt_scrapper.domain.entities.content import Content
 
 # TODO: test this shit
 class YouTubeContentScanner(ContentScannerInterface):
-    max_results = 50
+    CONTENT_LIMIT = 1000
+    YOUTUBE_SEARCH_MAX_RESULTS = 50
 
     def scan_content(self, influencer: Influencer, cutoff_date: datetime) -> List[Content]:
         uploads_playlist_id = self.get_playlist_id(influencer)
@@ -50,7 +51,7 @@ class YouTubeContentScanner(ContentScannerInterface):
         video_ids = []
         fetch_more = True
         page_token = None
-        while fetch_more:
+        while fetch_more and len(video_ids) < self.CONTENT_LIMIT:
             data = self.fetch_video_ids(playlist_id, page_token)
             
             for item in data["items"]:
@@ -72,7 +73,7 @@ class YouTubeContentScanner(ContentScannerInterface):
         query_params = {
             "part": "snippet",
             "playlistId": playlist_id,
-            "maxResults": self.max_results,
+            "maxResults": self.YOUTUBE_SEARCH_MAX_RESULTS,
             "key": settings.YOUTUBE_API_KEY
         }
 
@@ -95,10 +96,10 @@ class YouTubeContentScanner(ContentScannerInterface):
         videos = []
 
         while curr_id < len(video_ids):
-            video_ids_slice = video_ids[curr_id:curr_id+self.max_results]
+            video_ids_slice = video_ids[curr_id:curr_id+self.YOUTUBE_SEARCH_MAX_RESULTS]
             videos_json = self.fetch_videos(video_ids_slice)
             videos += videos_json["items"]
-            curr_id += self.max_results
+            curr_id += self.YOUTUBE_SEARCH_MAX_RESULTS
 
         return videos
 

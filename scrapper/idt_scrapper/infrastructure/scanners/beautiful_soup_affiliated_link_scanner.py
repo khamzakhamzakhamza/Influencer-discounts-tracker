@@ -28,7 +28,7 @@ class BeautifulSoupAffiliatedLinkScanner(AffiliatedLinkScannerInterface):
                 tokens = self.get_top_words(webpage) + self.get_meta_tags(webpage)
 
                 affiliated_link = AffiliatedLink(
-                    id =  uuid.uuid4(),
+                    id =  str(uuid.uuid4()),
                     prompt= content.prompt,
                     tokens=tokens,
                     link=promo_link,
