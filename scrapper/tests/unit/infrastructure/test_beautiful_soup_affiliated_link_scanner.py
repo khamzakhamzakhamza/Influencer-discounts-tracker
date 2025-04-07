@@ -136,7 +136,7 @@ def test_scan_links_return_links(affiliated_link_scanner):
         patch.object(affiliated_link_scanner, 'get_meta_tags', return_value=mock_meta_tags) as mock_get_meta_tags:
         
         # Act
-        result = affiliated_link_scanner.scan_links([mock_content])
+        result = affiliated_link_scanner.scan_links(mock_content)
 
         # Assert
         assert len(result) == 1

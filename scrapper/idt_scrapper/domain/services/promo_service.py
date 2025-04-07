@@ -9,6 +9,9 @@ class PromoService:
         self.affiliated_link_repository = affiliated_link_repository
         self.affiliated_link_scanner = affiliated_link_scanner
 
-    def extract_promos(self, content: List[Content]) -> List[Promo]:
-        links = self.affiliated_link_scanner.scan_links(content)
-        return self.affiliated_link_repository.save_links(links)
+    def extract_promos(self, content: List[Content]):
+        for _content in content:
+            links = self.affiliated_link_scanner.scan_links(_content)
+            self.affiliated_link_repository.save_links(content, links)
+            
+        print('yo')

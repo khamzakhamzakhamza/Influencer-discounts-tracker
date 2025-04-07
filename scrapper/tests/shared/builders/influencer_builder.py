@@ -3,12 +3,12 @@ from idt_scrapper.domain.entities.influencer import Influencer
 
 class InfluencerBuilder:
     def __init__(self):
-        self.id = "id"
-        self.channel_id = "channel_id"
-        self.username = "username"
-        self.title = "title"
-        self.channel_url = "channel_url"
-        self.image_url = "image_url"
+        self.id = "57ae1dd2-592c-49f4-8f92-55a29a744ba2"
+        self.channel_id ="UC4EQHfzIbkL_Skit_iKt1aA"
+        self.username =  "@moistcharlieclipsofficial"
+        self.title = "Moist Charlie Clips"
+        self.channel_url = "https://www.youtube.com/@moistcharlieclipsofficial"
+        self.image_url = "https://yt3.ggpht.com/uNnYRnCNiXwSx3IZcJoV0fRmDlTQIsIu4rHsGWvLSjGslrv-D4m1bUO6c7-0zoU4J8ol-9OrNvo=s88-c-k-c0x00ffffff-no-rj"
         self.last_update_date = datetime.now(timezone.utc)
         self.creation_date = datetime.now(timezone.utc)
         self.version = 1

@@ -17,9 +17,12 @@ class UpdateOrchestrator:
         for influencer in influencers:
             try:
                 self._influencer_service.update_influencer(influencer)
+
                 most_recent_content_date = self._content_service.delete_stale(influencer)
                 content = self._content_service.save_content(influencer, most_recent_content_date)
+                
                 self._promo_service.extract_promos(content)
+                
                 updated_id.append(influencer.id)
             except Exception as e:
                 failed_id.append(influencer.id)

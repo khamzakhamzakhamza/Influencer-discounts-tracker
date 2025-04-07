@@ -6,3 +6,4 @@ def test_update_influencers_should_update_influencers(scrapper_fixture):
     scrapper_fixture.update_influencers()
     
     # Assert
+    raise Exception("Test not implemented")

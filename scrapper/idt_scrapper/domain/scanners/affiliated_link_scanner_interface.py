@@ -5,5 +5,5 @@ from idt_scrapper.domain.entities.affiliated_link import AffiliatedLink
 
 class AffiliatedLinkScannerInterface(ABC):
     @abstractmethod
-    def scan_links(self, content: List[Content]) -> List[AffiliatedLink]:
+    def scan_links(self, content: Content) -> List[AffiliatedLink]:
         pass

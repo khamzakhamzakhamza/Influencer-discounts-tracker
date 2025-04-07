@@ -8,7 +8,6 @@ from typing import Counter, List, Optional
 from bs4 import BeautifulSoup
 from idt_scrapper.domain.scanners.affiliated_link_scanner_interface import AffiliatedLinkScannerInterface
 from idt_scrapper.domain.entities.content import Content
-from idt_scrapper.domain.entities.promo import Promo
 from idt_scrapper.domain.entities.affiliated_link import AffiliatedLink
 from idt_scrapper.domain.errors.scanning_error import ScanningError
 
@@ -16,21 +15,21 @@ class BeautifulSoupAffiliatedLinkScanner(AffiliatedLinkScannerInterface):
     nltk.download('stopwords')
     STOP_WORDS = set(stopwords.words('english'))
 
-    def scan_links(self, content: List[Content]) -> List[AffiliatedLink]:
+    def scan_links(self, content: Content) -> List[AffiliatedLink]:
         promos = []
 
-        for _content in content:
-            links = self.get_links(_content.prompt)
-            promo_links = self.filter_social_media_links(links)
+        links = self.get_links(content.prompt)
+        promo_links = self.filter_social_media_links(links)
 
-            for promo_link in promo_links:
+        for promo_link in promo_links:
+            try:
                 webpage = self.get_promo_webpage(promo_link)
 
                 tokens = self.get_top_words(webpage) + self.get_meta_tags(webpage)
 
                 affiliated_link = AffiliatedLink(
                     id =  uuid.uuid4(),
-                    prompt= _content.prompt,
+                    prompt= content.prompt,
                     tokens=tokens,
                     link=promo_link,
                     creation_date=datetime.now(timezone.utc),
@@ -38,6 +37,9 @@ class BeautifulSoupAffiliatedLinkScanner(AffiliatedLinkScannerInterface):
                 )
 
                 promos.append(affiliated_link)
+            except ScanningError as e:
+                # TODO: Lgg error
+                print(e)
 
         return promos
 
