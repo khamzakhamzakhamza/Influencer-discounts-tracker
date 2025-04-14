@@ -26,7 +26,7 @@ class Neo4jContentRepository(ContentRepositoryInterface):
         with Neo4jSessionFactory() as session:
             session.run(query, ids=content_ids)
     
-    def create_content(self, influencer: Influencer, content: List[Content]):
+    def save_content(self, influencer: Influencer, content: List[Content]):
         query = """
             MERGE (i:Influencer {id: $influencer_id})
             WITH i, $contents AS contents

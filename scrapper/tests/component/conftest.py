@@ -1,27 +1,28 @@
+from unittest.mock import MagicMock
 import pytest
 from idt_scrapper.domain.orchestrators.update_orchestrator import UpdateOrchestrator
+from idt_scrapper.domain.repositories.affiliated_link_repository_interface import AffiliatedLinkRepositoryInterface
+from idt_scrapper.domain.repositories.content_repository_interface import ContentRepositoryInterface
+from idt_scrapper.domain.repositories.influencer_repository_interface import InfluencerRepositoryInterface
+from idt_scrapper.domain.scanners.affiliated_link_scanner_interface import AffiliatedLinkScannerInterface
+from idt_scrapper.domain.scanners.content_scanner_intrerface import ContentScannerInterface
+from idt_scrapper.domain.scanners.influencer_scanner_interface import InfluencerScannerInterface
 from idt_scrapper.domain.services.influencer_service import InfluencerService
 from idt_scrapper.domain.services.content_service import ContentService
 from idt_scrapper.domain.services.promo_service import PromoService
-from tests.component.mock_repositories.mock_affiliated_link_repository import MockAffiliatedLinkRepository
-from tests.component.mock_scanners.mock_affiliated_link_repository import MockAffiliatedLinkScanner
-from tests.component.mock_scanners.mock_content_scanner import MockContentScanner
-from tests.component.mock_repositories.mock_content_repository import MockContentRepository
-from tests.component.mock_scanners.mock_influencer_scanner import MockInfluencerScanner
-from tests.component.mock_repositories.mock_influencer_repository import MockInfluencerRepository
 
 @pytest.fixture
 def scrapper_fixture():
-    influencer_repository = MockInfluencerRepository()
-    influencer_scanner = MockInfluencerScanner()
-    influencer_service = InfluencerService(influencer_repository, influencer_scanner)
+    influencer_repository_mock = MagicMock(spec=InfluencerRepositoryInterface)
+    influencer_scanner_mock = MagicMock(spec=InfluencerScannerInterface)
+    influencer_service = InfluencerService(influencer_repository_mock, influencer_scanner_mock)
 
-    content_repository = MockContentRepository()
-    content_scanner = MockContentScanner()
-    content_service = ContentService(content_repository, content_scanner)
+    content_repository_mock = MagicMock(ContentRepositoryInterface)
+    content_scanner_mock = MagicMock(ContentScannerInterface)
+    content_service = ContentService(content_repository_mock, content_scanner_mock)
 
-    affiliated_link_repository = MockAffiliatedLinkRepository()
-    affiliated_link_scanner = MockAffiliatedLinkScanner()
-    promo_service = PromoService(affiliated_link_repository, affiliated_link_scanner)
+    affiliated_link_repository_mock = MagicMock(AffiliatedLinkRepositoryInterface)
+    affiliated_link_scanner_mock = MagicMock(AffiliatedLinkScannerInterface)
+    promo_service = PromoService(affiliated_link_repository_mock, affiliated_link_scanner_mock)
 
-    return UpdateOrchestrator(influencer_service, content_service, promo_service)
+    return (influencer_repository_mock, content_repository_mock, content_scanner_mock, affiliated_link_repository_mock, affiliated_link_scanner_mock, UpdateOrchestrator(influencer_service, content_service, promo_service))

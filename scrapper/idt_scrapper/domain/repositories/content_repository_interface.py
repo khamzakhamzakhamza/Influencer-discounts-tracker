@@ -13,5 +13,5 @@ class ContentRepositoryInterface(ABC):
         pass
 
     @abstractmethod
-    def create_content(self, influencer: Influencer, content: List[Content]):
+    def save_content(self, influencer: Influencer, content: List[Content]):
         pass
